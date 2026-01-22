@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rupeevalcore | Finance Education Workshops</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["", "sans-serif"],
+            },
+            colors: {
+              background: "#030712",
+              surface: "#0f172a",
+              primary: "#6366f1",
+              secondary: "#a855f7",
+            },
+            animation: {
+              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+              float: "float 6s ease-in-out infinite",
+              pulse: "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+            },
+          },
+        },
+      };
+      (function () {
+        emailjs.init("c5wUsi6kNbeElCjGK");
+      })();
+    </script>
+    <style>
+      body {
+        background-color: #030712;
+        color: #f8fafc;
+        -webkit-font-smoothing: antialiased;
+        background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 60%);
+        background-attachment: fixed;
+      }
+      .bg-grid-white {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.04)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+      }
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      }
+      .gradient-border {
+        position: relative;
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(12px);
+        border-radius: 0.75rem;
+        z-index: 1;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+      }
+      .gradient-border::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1),
+          rgba(99, 102, 241, 0.2),
+          rgba(168, 85, 247, 0.1),
+          rgba(255, 255, 255, 0)
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .gradient-border:hover {
+        transform: translateY(-5px) scale(1.01);
+        border-color: rgba(99, 102, 241, 0.4);
+        box-shadow: 0 15px 30px -10px rgba(99, 102, 241, 0.2), 0 0 10px rgba(99, 102, 241, 0.1);
+      }
+      .gradient-border:hover::before {
+        opacity: 1;
+      }
+      .text-gradient {
+        background: linear-gradient(to right, #ffffff, #e2e8f0, #94a3b8, #ffffff);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textShimmer 4s linear infinite;
+      }
+      @keyframes textShimmer {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 200% 50%;
+        }
+      }
+      .text-gradient-logo {
+        background: linear-gradient(to right, #6366f1, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .perspective-container {
+        perspective: 2000px;
+      }
+      .card-3d {
+        transform-style: preserve-3d;
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+      }
+      .hero-tilt {
+        transform: rotateX(8deg) rotateY(-4deg) rotateZ(1deg);
+        box-shadow: -20px 20px 60px rgba(0, 0, 0, 0.5);
+        transition: transform 0.8s ease-out;
+      }
+      .hero-tilt:hover {
+        transform: rotateX(2deg) rotateY(-1deg) rotateZ(0deg) scale(1.02);
+        box-shadow: -10px 10px 40px rgba(99, 102, 241, 0.2);
+      }
+      .input-premium {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: all 0.3s ease;
+        color: white;
+      }
+      .input-premium:focus {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(99, 102, 241, 0.5);
+        outline: none;
+        box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2), 0 0 20px rgba(99, 102, 241, 0.1);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+        filter: blur(8px);
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .animate-float-delayed {
+        animation: float 7s ease-in-out infinite;
+        animation-delay: 2s;
+      }
+      .mask-radial-faded {
+        mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 100%);
+        -webkit-mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 100%);
+      }
+    </style>
+  </head>
+
+  <body class="overflow-x-hidden selection:bg-indigo-500/30">
+    <div
+      class="fixed top-[-10%] right-[-10%] w-[600px] h-[600px] bg-purple-600/15 rounded-full blur-[120px] -z-10 pointer-events-none animate-pulse mix-blend-screen"
+    ></div>
+    <div class="fixed inset-0 bg-grid-white opacity-20 pointer-events-none -z-10 mask-radial-faded"></div>
+
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="relative w-10 h-10 flex items-center justify-center">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 40 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="group-hover:scale-105 transition-transform duration-300"
+            >
+              <rect x="2" y="2" width="36" height="36" rx="4" stroke="url(#paint0_linear)" stroke-width="1.5" fill="rgba(15, 23, 42, 0.5)"></rect>
+              <path d="M8 8L32 32M8 32L32 8" stroke="url(#paint1_linear)" stroke-width="1" stroke-opacity="0.3"></path>
+              <path d="M20 4V36M4 20H36" stroke="url(#paint1)" stroke-width="1" stroke-opacity="0.3"></path>
+              <path d="M13 28L20 8L27 28M15.5 22H24.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <defs>
+                <linearGradient id="paint0_linear" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#3b82f6"></stop>
+                  <stop offset="1" stop-color="#a855f7"></stop>
+                </linearGradient>
+                <linearGradient id="paint1_linear" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#3b82f6"></stop>
+                  <stop offset="1" stop-color="#a855f7"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-base font-semibold tracking-tight text-white leading-none">Rupeevalcore</span>
+            <span class="leading-none text-xs font-medium text-slate-400 tracking-wide mt-1">Finance Education</span>
+          </div>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+          <a href="#about" class="hover:text-white transition-colors duration-200">About</a>
+          <a href="#services" class="hover:text-white transition-colors duration-200">Workshops</a>
+          <a href="#work" class="hover:text-white transition-colors duration-200">Audience</a>
+          <a href="#pricing" class="hover:text-white transition-colors duration-200">Pricing</a>
+        </div>
+
+        <a
+          href="#contact"
+          class="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-xs font-semibold text-white hover:bg-white/[0.12] transition-all hover:border-white/20 group"
+        >
+          Contact
+          <iconify-icon icon="solar:arrow-right-linear" width="14" class="group-hover:translate-x-0.5 transition-transform" stroke-width="1.5"></iconify-icon>
+        </a>
+
+        <button class="md:hidden text-slate-300 hover:text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" aria-label="Open menu">
+          <iconify-icon icon="solar:hamburger-menu-linear" width="24" stroke-width="1.5"></iconify-icon>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-background/95 backdrop-blur-xl border-b border-white/10 p-6 md:hidden z-40">
+        <div class="flex flex-col gap-6 text-sm text-slate-400">
+          <a href="#about" class="hover:text-white">About</a>
+          <a href="#services" class="hover:text-white">Workshops</a>
+          <a href="#work" class="hover:text-white">Audience</a>
+          <a href="#pricing" class="hover:text-white">Pricing</a>
+          <a href="#contact" class="text-indigo-400 font-semibold">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="lg:pt-48 lg:pb-32 overflow-hidden pt-32 pb-20 relative perspective-container">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-indigo-600/15 rounded-full blur-[130px] -z-10 opacity-50 pointer-events-none mix-blend-screen animate-pulse"></div>
+      <div class="absolute bottom-0 right-0 w-[800px] h-[800px] bg-purple-600/10 rounded-full blur-[130px] -z-10 pointer-events-none opacity-40 mix-blend-screen"></div>
+
+      <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8 animate-fade-in-up">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-[11px] tracking-wide uppercase text-indigo-300 font-medium shadow-[0_0_20px_rgba(99,102,241,0.2)] ring-1 ring-indigo-500/30"
+          >
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+            </span>
+            Workshops in Chennai & Online
+          </div>
+
+          <h1 class="lg:text-7xl leading-[1.05] text-gradient text-5xl font-semibold tracking-tight drop-shadow-2xl">Finance Made Simple. Life Made Smarter.</h1>
+          <p class="leading-relaxed text-lg text-slate-400 max-w-md">
+            Practical workshops on Stock Market, Tax, Insurance &amp; Investments designed for students, professionals, and families.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
+            <a
+              href="#services"
+              class="text-background hover:bg-slate-200 transition-colors shadow-white/5 text-sm font-semibold text-center bg-white rounded-lg pt-3.5 pr-8 pb-3.5 pl-8 shadow-lg"
+            >
+              Explore Workshops
+            </a>
+            <a
+              href="#contact"
+              class="px-8 py-3.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm font-medium hover:bg-white/10 transition-colors text-center backdrop-blur-sm"
+            >
+              Contact Rupeevalcore
+            </a>
+          </div>
+
+          <div class="pt-2 flex flex-wrap gap-3 text-xs text-slate-400">
+            <div class="inline-flex items-center gap-2 rounded-full bg-white/[0.03] border border-white/10 px-3 py-1.5">
+              <iconify-icon icon="solar:map-point-linear" width="16" class="text-slate-300" stroke-width="1.5"></iconify-icon>
+              Chennai, Tamil Nadu
+            </div>
+            <a
+              href="tel:+918248589694"
+              class="inline-flex items-center gap-2 rounded-full bg-white/[0.03] border border-white/10 px-3 py-1.5 hover:bg-white/[0.05] transition-colors"
+            >
+              <iconify-icon icon="solar:phone-linear" width="16" class="text-slate-300" stroke-width="1.5"></iconify-icon>
+              +91 8248589694
+            </a>
+            <a
+              href="mailto:contactrupeevalcore@gmail.com"
+              class="inline-flex items-center gap-2 rounded-full bg-white/[0.03] border border-white/10 px-3 py-1.5 hover:bg-white/[0.05] transition-colors"
+            >
+              <iconify-icon icon="solar:letter-linear" width="16" class="text-slate-300" stroke-width="1.5"></iconify-icon>
+              contactrupeevalcore@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block h-[500px] w-full animate-float">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-[520px] h-[360px] bg-slate-900 border border-white/10 rounded-xl hero-tilt relative z-10 overflow-hidden shadow-2xl">
+              <div class="h-9 border-b border-white/10 flex items-center px-4 gap-2 bg-slate-800/50 backdrop-blur-md">
+                <div class="w-2.5 h-2.5 rounded-full bg-rose-500/20"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-amber-500/20"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-emerald-500/20"></div>
+              </div>
+              <div class="p-6 grid grid-cols-3 gap-5 h-full bg-slate-950/50">
+                <div class="col-span-2 space-y-5">
+                  <div class="h-28 rounded-lg bg-white/5 w-full"></div>
+                  <div class="h-8 rounded-lg bg-white/5 w-3/4"></div>
+                  <div class="space-y-2.5">
+                    <div class="h-2 rounded-full bg-white/5 w-full"></div>
+                    <div class="h-2 rounded-full bg-white/5 w-5/6"></div>
+                  </div>
+                  <div class="flex gap-3 mt-4">
+                    <div class="h-10 w-24 rounded-md bg-indigo-500/20"></div>
+                    <div class="h-10 w-24 rounded-md bg-white/5"></div>
+                  </div>
+                </div>
+                <div class="col-span-1 space-y-5">
+                  <div class="h-32 rounded-lg bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 w-full"></div>
+                  <div class="h-12 rounded-lg bg-white/5 w-full"></div>
+                  <div class="h-12 rounded-lg bg-white/5 w-full"></div>
+                </div>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
+
+              <div class="absolute -right-12 top-10 p-4 rounded-xl bg-slate-900/90 border border-white/10 backdrop-blur-md shadow-2xl animate-float-delayed" style="transform: translateZ(50px)">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center border border-emerald-500/20">
+                    <iconify-icon icon="solar:bolt-linear" class="text-emerald-400" width="20" stroke-width="1.5"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Learning Format</div>
+                    <div class="text-base font-semibold text-white">Practical</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="absolute -left-8 bottom-16 p-4 rounded-xl bg-slate-900/90 border border-white/10 backdrop-blur-md shadow-2xl animate-float" style="transform: translateZ(30px)">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center border border-indigo-500/20">
+                    <iconify-icon icon="solar:graph-new-linear" class="text-indigo-400" width="20" stroke-width="1.5"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Topics</div>
+                    <div class="text-sm font-semibold text-white">Stocks • Tax • Insurance</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute w-[480px] h-[320px] bg-slate-800/20 border border-white/5 rounded-xl hero-tilt -z-10 translate-x-10 translate-y-10 blur-[2px]"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-24 border-t border-white/5 bg-background relative">
+      <div class="absolute top-1/2 right-0 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[100px] -translate-y-1/2 -z-10 pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-12 gap-16 items-start reveal">
+          <div class="lg:col-span-4 sticky top-24">
+            <h2 class="text-3xl font-semibold tracking-tight mb-5 text-white">About Rupeevalcore</h2>
+            <p class="text-slate-400 leading-relaxed text-sm">
+              Rupeevalcore delivers hands-on finance education through practical workshops that simplify money decisions—covering markets, taxation, risk, and investments for real life.
+            </p>
+          </div>
+
+          <div class="lg:col-span-8 grid md:grid-cols-2 gap-6">
+            <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all group">
+              <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <iconify-icon icon="solar:book-2-linear" width="20" class="text-indigo-400" stroke-width="1.5"></iconify-icon>
+              </div>
+              <h3 class="text-base font-medium text-white mb-2">Practical Learning</h3>
+              <p class="text-sm text-slate-400">Clear frameworks, real examples, and actionable steps you can apply immediately.</p>
+            </div>
+
+            <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all group">
+              <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <iconify-icon icon="solar:target-linear" width="20" class="text-purple-400" stroke-width="1.5"></iconify-icon>
+              </div>
+              <h3 class="text-base font-medium text-white mb-2">Beginner-Friendly</h3>
+              <p class="text-sm text-slate-400">No jargon-first approach—built for students, families, and working professionals.</p>
+            </div>
+
+            <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all group">
+              <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <iconify-icon icon="solar:shield-check-linear" width="20" class="text-emerald-400" stroke-width="1.5"></iconify-icon>
+              </div>
+              <h3 class="text-base font-medium text-white mb-2">Risk Awareness</h3>
+              <p class="text-sm text-slate-400">Learn the “why” behind insurance and the “how” of protecting your finances.</p>
+            </div>
+
+            <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all group">
+              <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <iconify-icon icon="solar:chart-linear" width="20" class="text-amber-400" stroke-width="1.5"></iconify-icon>
+              </div>
+              <h3 class="text-base font-medium text-white mb-2">Investment Clarity</h3>
+              <p class="text-sm text-slate-400">Understand what to do first, what to avoid, and how to plan long-term.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workshops / Curriculum Accordion (fix: ensure sub-topics render and toggle) -->
+    <section id="services" class="py-24 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-16 text-center reveal">
+          <h2 class="text-3xl font-semibold tracking-tight mb-4 text-white">Workshops</h2>
+          <p class="text-slate-400">Choose a topic and build confidence with money.</p>
+        </div>
+
+        <!-- Existing grid kept; replaced each card body content-only to include sub-topic list that toggles (hidden by default) -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+          <!-- Card template (kept styles/structure) -->
+          <div class="group p-8 gradient-border card-3d">
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+              <iconify-icon icon="solar:chart-2-linear" width="20" class="text-white" stroke-width="1.5"></iconify-icon>
+            </div>
+            <button
+              type="button"
+              class="w-full text-left"
+              onclick="toggleCurriculum('curr-1')"
+              aria-controls="curr-1"
+              aria-expanded="false"
+            >
+              <h3 class="text-lg font-medium text-white mb-2">Stock Market Basics</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Build a strong foundation: how markets work, terms, and practical entry steps.</p>
+            </button>
+            <div id="curr-1" class="hidden mt-4">
+              <ul class="space-y-2 text-sm text-slate-300 leading-relaxed">
+                <li class="flex gap-2"><span>•</span><span>Introduction to Stock Market</span></li>
+                <li class="flex gap-2"><span>•</span><span>Primary Market & Secondary Market</span></li>
+                <li class="flex gap-2"><span>•</span><span>How to open a Demat & Trading Account</span></li>
+                <li class="flex gap-2"><span>•</span><span>Types of Orders (Market, Limit, SL)</span></li>
+                <li class="flex gap-2"><span>•</span><span>Basic market terminology</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="group p-8 gradient-border card-3d">
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+              <iconify-icon icon="solar:wallet-linear" width="20" class="text-white" stroke-width="1.5"></iconify-icon>
+            </div>
+            <button type="button" class="w-full text-left" onclick="toggleCurriculum('curr-2')" aria-controls="curr-2" aria-expanded="false">
+              <h3 class="text-lg font-medium text-white mb-2">Personal Finance &amp; Money Management</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Budgeting, emergency funds, debt basics, and building healthy money habits.</p>
+            </button>
+            <div id="curr-2" class="hidden mt-4">
+              <ul class="space-y-2 text-sm text-slate-300 leading-relaxed">
+                <li class="flex gap-2"><span>•</span><span>Budgeting & Expense Tracking</span></li>
+                <li class="flex gap-2"><span>•</span><span>Emergency Fund Planning</span></li>
+                <li class="flex gap-2"><span>•</span><span>Debt Management Basics</span></li>
+                <li class="flex gap-2"><span>•</span><span>Goal Setting & Financial Planning</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="group p-8 gradient-border card-3d">
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+              <iconify-icon icon="solar:shield-linear" width="20" class="text-white" stroke-width="1.5"></iconify-icon>
+            </div>
+            <button type="button" class="w-full text-left" onclick="toggleCurriculum('curr-3')" aria-controls="curr-3" aria-expanded="false">
+              <h3 class="text-lg font-medium text-white mb-2">Insurance &amp; Risk Awareness</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Understand protection planning and how to evaluate common insurance needs.</p>
+            </button>
+            <div id="curr-3" class="hidden mt-4">
+              <ul class="space-y-2 text-sm text-slate-300 leading-relaxed">
+                <li class="flex gap-2"><span>•</span><span>Why Insurance Matters</span></li>
+                <li class="flex gap-2"><span>•</span><span>Types of Insurance (Life, Health, Motor)</span></li>
+                <li class="flex gap-2"><span>•</span><span>Premiums, Coverage & Riders</span></li>
+                <li class="flex gap-2"><span>•</span><span>Common Mistakes & How to Avoid</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="group p-8 gradient-border card-3d">
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+              <iconify-icon icon="solar:document-text-linear" width="20" class="text-white" stroke-width="1.5"></iconify-icon>
+            </div>
+            <button type="button" class="w-full text-left" onclick="toggleCurriculum('curr-4')" aria-controls="curr-4" aria-expanded="false">
+              <h3 class="text-lg font-medium text-white mb-2">Tax Awareness</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Essentials of tax planning and understanding common deductions and rules.</p>
+            </button>
+            <div id="curr-4" class="hidden mt-4">
+              <ul class="space-y-2 text-sm text-slate-300 leading-relaxed">
+                <li class="flex gap-2"><span>•</span><span>Basics of Income Tax</span></li>
+                <li class="flex gap-2"><span>•</span><span>Old vs New Tax Regime</span></li>
+                <li class="flex gap-2"><span>•</span><span>Deductions & Exemptions Overview</span></li>
+                <li class="flex gap-2"><span>•</span><span>Tax Planning Essentials</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="group p-8 gradient-border card-3d">
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+              <iconify-icon icon="solar:calendar-linear" width="20" class="text-white" stroke-width="1.5"></iconify-icon>
+            </div>
+            <button type="button" class="w-full text-left" onclick="toggleCurriculum('curr-5')" aria-controls="curr-5" aria-expanded="false">
+              <h3 class="text-lg font-medium text-white mb-2">Investment Planning</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Goal-based planning: where to start, how to choose, and how to stay consistent.</p>
+            </button>
+            <div id="curr-5" class="hidden mt-4">
+              <ul class="space-y-2 text-sm text-slate-300 leading-relaxed">
+                <li class="flex gap-2"><span>•</span><span>Goal-Based Investing</span></li>
+                <li class="flex gap-2"><span>•</span><span>Risk Profiling</span></li>
+                <li class="flex gap-2"><span>•</span><span>Asset Allocation Basics</span></li>
+                <li class="flex gap-2"><span>•</span><span>Consistency & Review</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="group p-8 gradient-border card-3d">
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+              <iconify-icon icon="solar:layers-linear" width="20" class="text-white" stroke-width="1.5"></iconify-icon>
+            </div>
+            <button type="button" class="w-full text-left" onclick="toggleCurriculum('curr-6')" aria-controls="curr-6" aria-expanded="false">
+              <h3 class="text-lg font-medium text-white mb-2">Mutual Funds 101</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">SIPs, categories, risk/return basics, and how to read fund information.</p>
+            </button>
+            <div id="curr-6" class="hidden mt-4">
+              <ul class="space-y-2 text-sm text-slate-300 leading-relaxed">
+                <li class="flex gap-2"><span>•</span><span>What are Mutual Funds?</span></li>
+                <li class="flex gap-2"><span>•</span><span>Types of Mutual Funds</span></li>
+                <li class="flex gap-2"><span>•</span><span>SIP vs Lump Sum</span></li>
+                <li class="flex gap-2"><span>•</span><span>NAV, Expense Ratio & Exit Load</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="group p-8 gradient-border card-3d">
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+              <iconify-icon icon="solar:graph-up-linear" width="20" class="text-white" stroke-width="1.5"></iconify-icon>
+            </div>
+            <button type="button" class="w-full text-left" onclick="toggleCurriculum('curr-7')" aria-controls="curr-7" aria-expanded="false">
+              <h3 class="text-lg font-medium text-white mb-2">Stock Market Investing</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Basics of investing discipline, risk control, and long-term approach.</p>
+            </button>
+            <div id="curr-7" class="hidden mt-4">
+              <ul class="space-y-2 text-sm text-slate-300 leading-relaxed">
+                <li class="flex gap-2"><span>•</span><span>Investing vs Trading</span></li>
+                <li class="flex gap-2"><span>•</span><span>Fundamental Concepts</span></li>
+                <li class="flex gap-2"><span>•</span><span>Risk Management Basics</span></li>
+                <li class="flex gap-2"><span>•</span><span>Long-Term Mindset</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="group p-8 gradient-border card-3d">
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+              <iconify-icon icon="solar:bitcoin-linear" width="20" class="text-white" stroke-width="1.5"></iconify-icon>
+            </div>
+            <button type="button" class="w-full text-left" onclick="toggleCurriculum('curr-8')" aria-controls="curr-8" aria-expanded="false">
+              <h3 class="text-lg font-medium text-white mb-2">Crypto Market Awareness</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Understand volatility, risks, common terms, and responsible participation.</p>
+            </button>
+            <div id="curr-8" class="hidden mt-4">
+              <ul class="space-y-2 text-sm text-slate-300 leading-relaxed">
+                <li class="flex gap-2"><span>•</span><span>Basics of Crypto & Blockchain</span></li>
+                <li class="flex gap-2"><span>•</span><span>Market Volatility & Risks</span></li>
+                <li class="flex gap-2"><span>•</span><span>Common Terms & Concepts</span></li>
+                <li class="flex gap-2"><span>•</span><span>Responsible Participation</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="group p-8 gradient-border card-3d">
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+              <iconify-icon icon="solar:medal-ribbon-star-linear" width="20" class="text-white" stroke-width="1.5"></iconify-icon>
+            </div>
+            <button type="button" class="w-full text-left" onclick="toggleCurriculum('curr-9')" aria-controls="curr-9" aria-expanded="false">
+              <h3 class="text-lg font-medium text-white mb-2">Gold, Silver &amp; Commodity Awareness</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Role of commodities, key drivers, and practical ways to learn the category.</p>
+            </button>
+            <div id="curr-9" class="hidden mt-4">
+              <ul class="space-y-2 text-sm text-slate-300 leading-relaxed">
+                <li class="flex gap-2"><span>•</span><span>Why Commodities Matter</span></li>
+                <li class="flex gap-2"><span>•</span><span>Gold & Silver Basics</span></li>
+                <li class="flex gap-2"><span>•</span><span>Key Drivers of Prices</span></li>
+                <li class="flex gap-2"><span>•</span><span>Ways to Participate</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / Choose Your Learning Format (fix: ONLY 2 formats, remove badges/extra labels; content exact) -->
+    <section id="pricing" class="py-24 border-t border-white/5 bg-slate-950/50">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-16 text-center reveal">
+          <h2 class="text-3xl font-semibold tracking-tight mb-4 text-white">Choose Your Learning Format</h2>
+          <p class="text-slate-400">Simple options for groups and individuals.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto reveal">
+          <!-- Keep grid as-is; keep center column empty but without adding UI; minimal change by using a hidden placeholder column -->
+          <div class="p-8 rounded-2xl border border-white/5 bg-white/[0.01] flex flex-col hover:border-white/10 transition-all">
+            <div class="mb-6">
+              <h3 class="text-lg font-medium text-white mb-1">Group Sessions</h3>
+              <p class="text-sm text-slate-400">Perfect for colleges &amp; corporates</p>
+              <div class="mt-4 flex items-baseline gap-1">
+                <span class="text-3xl font-semibold text-white">₹499.00</span>
+                <span class="text-xs font-medium text-slate-400">/ participant</span>
+              </div>
+              <p class="mt-2 text-xs text-slate-500">Starting from ₹499.00 / participant</p>
+            </div>
+            <ul class="space-y-4 mb-8 flex-1">
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <iconify-icon icon="solar:check-circle-linear" class="text-indigo-400 shrink-0" width="16" stroke-width="1.5"></iconify-icon>
+                Interactive workshops for groups of 10 or more participants
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <iconify-icon icon="solar:check-circle-linear" class="text-indigo-400 shrink-0" width="16" stroke-width="1.5"></iconify-icon>
+                Available both online and offline (in-person)
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <iconify-icon icon="solar:check-circle-linear" class="text-indigo-400 shrink-0" width="16" stroke-width="1.5"></iconify-icon>
+                Customizable topics based on audience requirements
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <iconify-icon icon="solar:check-circle-linear" class="text-indigo-400 shrink-0" width="16" stroke-width="1.5"></iconify-icon>
+                Q&amp;A sessions and practical examples included
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              onclick="prefillPackage('Group Sessions (10+)')"
+              class="w-full py-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-sm font-medium text-center transition-colors text-white"
+            >
+              Book Group Session
+            </a>
+          </div>
+
+          <!-- Middle column preserved without adding UI elements -->
+          <div class="hidden md:block"></div>
+
+          <div class="p-8 rounded-2xl border border-white/5 bg-white/[0.01] flex flex-col hover:border-white/10 transition-all">
+            <div class="mb-6">
+              <h3 class="text-lg font-medium text-white mb-1">One-to-One Sessions</h3>
+              <p class="text-sm text-slate-400">Personalized learning experience</p>
+              <div class="mt-4 flex items-baseline gap-1">
+                <span class="text-3xl font-semibold text-white">Custom</span>
+              </div>
+              <p class="mt-2 text-xs text-slate-500">Custom (Based on your requirements)</p>
+            </div>
+            <ul class="space-y-4 mb-8 flex-1">
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <iconify-icon icon="solar:check-circle-linear" class="text-indigo-400 shrink-0" width="16" stroke-width="1.5"></iconify-icon>
+                Fully customized based on individual learning goals
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <iconify-icon icon="solar:check-circle-linear" class="text-indigo-400 shrink-0" width="16" stroke-width="1.5"></iconify-icon>
+                Flexible scheduling at your convenience
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <iconify-icon icon="solar:check-circle-linear" class="text-indigo-400 shrink-0" width="16" stroke-width="1.5"></iconify-icon>
+                Deep-dive into specific topics of your choice
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <iconify-icon icon="solar:check-circle-linear" class="text-indigo-400 shrink-0" width="16" stroke-width="1.5"></iconify-icon>
+                Ongoing support and follow-up guidance
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              onclick="prefillPackage('One-to-One (Custom)')"
+              class="w-full py-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-sm font-medium text-center transition-colors text-white"
+            >
+              Book One-to-One Session
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="py-24 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+          <div>
+            <h2 class="text-3xl font-semibold tracking-tight mb-4 text-white">Who it’s for</h2>
+            <p class="text-slate-400">Programs designed for learners at different stages of life.</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 reveal active">
+          <div
+            class="group relative flex flex-col bg-slate-900/40 border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 hover:border-indigo-500/30 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2"
+          >
+            <div class="relative h-56 w-full overflow-hidden bg-slate-800">
+              <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/40 via-slate-900 to-slate-950 transition-transform duration-700 group-hover:scale-105 pointer-events-none"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div
+                  class="w-14 h-14 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center shadow-lg group-hover:bg-indigo-500/20 transition-colors"
+                >
+                  <iconify-icon icon="solar:book-linear" class="text-indigo-400" width="28" stroke-width="1.5"></iconify-icon>
+                </div>
+              </div>
+              <div class="absolute top-4 left-4 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/5 text-[10px] font-semibold text-white uppercase tracking-wider shadow-sm">
+                Target Audience
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-lg font-semibold text-white mb-1">College Students</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Build fundamentals early: budgeting, taxes, and market basics with clarity.</p>
+            </div>
+          </div>
+
+          <div
+            class="group relative flex flex-col bg-slate-900/40 border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2"
+          >
+            <div class="relative h-56 w-full overflow-hidden bg-slate-800">
+              <div class="absolute inset-0 bg-gradient-to-tr from-blue-900/40 via-slate-900 to-slate-950 transition-transform duration-700 group-hover:scale-105"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div
+                  class="w-14 h-14 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center shadow-lg group-hover:bg-blue-500/20 transition-colors"
+                >
+                  <iconify-icon icon="solar:case-linear" class="text-blue-400" width="28" stroke-width="1.5"></iconify-icon>
+                </div>
+              </div>
+              <div class="absolute top-4 left-4 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/5 text-[10px] font-semibold text-white uppercase tracking-wider shadow-sm">
+                Target Audience
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-lg font-semibold text-white mb-1">Working Professionals</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Make smarter choices around insurance, taxes, investments, and long-term planning.</p>
+            </div>
+          </div>
+
+          <div
+            class="group relative flex flex-col bg-slate-900/40 border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 hover:border-purple-500/30 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2"
+          >
+            <div class="relative h-56 w-full overflow-hidden bg-slate-800">
+              <div class="absolute inset-0 bg-gradient-to-bl from-purple-900/40 via-slate-900 to-slate-950 transition-transform duration-700 group-hover:scale-105"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div
+                  class="w-14 h-14 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center shadow-lg group-hover:bg-purple-500/20 transition-colors"
+                >
+                  <iconify-icon icon="solar:users-group-rounded-linear" class="text-purple-400" width="28" stroke-width="1.5"></iconify-icon>
+                </div>
+              </div>
+              <div class="absolute top-4 left-4 px-2.5 py-1 rounded-md bg-purple-500/20 backdrop-blur-md border border-purple-500/20 text-[10px] font-semibold text-purple-200 uppercase tracking-wider shadow-sm">
+                Target Audience
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-lg font-semibold text-white mb-1">Corporate Teams &amp; Homemakers</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Financial awareness sessions tailored for teams and families to build confidence.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 reveal">
+          <div class="flex flex-wrap gap-3 justify-center">
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/[0.03] border border-white/10 px-4 py-2 text-xs text-slate-300">
+              <iconify-icon icon="solar:bookmark-linear" width="16" class="text-slate-300" stroke-width="1.5"></iconify-icon>
+              College Students
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/[0.03] border border-white/10 px-4 py-2 text-xs text-slate-300">
+              <iconify-icon icon="solar:briefcase-linear" width="16" class="text-slate-300" stroke-width="1.5"></iconify-icon>
+              Working Professionals
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/[0.03] border border-white/10 px-4 py-2 text-xs text-slate-300">
+              <iconify-icon icon="solar:buildings-3-linear" width="16" class="text-slate-300" stroke-width="1.5"></iconify-icon>
+              Corporate Teams
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/[0.03] border border-white/10 px-4 py-2 text-xs text-slate-300">
+              <iconify-icon icon="solar:home-2-linear" width="16" class="text-slate-300" stroke-width="1.5"></iconify-icon>
+              Homemakers
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 border-t border-white/5 bg-white/[0.005]">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-16 text-center reveal">
+          <h2 class="text-3xl font-semibold tracking-tight mb-4 text-white">How it works</h2>
+          <p class="text-slate-400">Pick a workshop. Learn the fundamentals. Apply in real life.</p>
+        </div>
+
+        <div class="relative max-w-4xl mx-auto reveal">
+          <div class="absolute top-6 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent hidden md:block"></div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="relative flex flex-col items-center text-center">
+              <div class="w-12 h-12 rounded-full bg-slate-900 border border-white/10 flex items-center justify-center z-10 mb-4 shadow-xl ring-4 ring-background">
+                <span class="text-indigo-400 font-semibold">01</span>
+              </div>
+              <h3 class="text-sm font-medium text-white mb-2">Choose Topic</h3>
+              <p class="text-xs text-slate-500 px-2">Select a workshop aligned to your goals.</p>
+            </div>
+
+            <div class="relative flex flex-col items-center text-center">
+              <div class="w-12 h-12 rounded-full bg-slate-900 border border-white/10 flex items-center justify-center z-10 mb-4 shadow-xl ring-4 ring-background">
+                <span class="text-indigo-400 font-semibold">02</span>
+              </div>
+              <h3 class="text-sm font-medium text-white mb-2">Attend Session</h3>
+              <p class="text-xs text-slate-500 px-2">Learn through clear explanations and examples.</p>
+            </div>
+
+            <div class="relative flex flex-col items-center text-center">
+              <div class="w-12 h-12 rounded-full bg-slate-900 border border-white/10 flex items-center justify-center z-10 mb-4 shadow-xl ring-4 ring-background">
+                <span class="text-indigo-400 font-semibold">03</span>
+              </div>
+              <h3 class="text-sm font-medium text-white mb-2">Ask Questions</h3>
+              <p class="text-xs text-slate-500 px-2">Interactive Q&amp;A to remove confusion.</p>
+            </div>
+
+            <div class="relative flex flex-col items-center text-center">
+              <div class="w-12 h-12 rounded-full bg-slate-900 border border-white/10 flex items-center justify-center z-10 mb-4 shadow-xl ring-4 ring-background">
+                <iconify-icon icon="solar:check-circle-linear" class="text-green-400" width="18" stroke-width="1.5"></iconify-icon>
+              </div>
+              <h3 class="text-sm font-medium text-white mb-2">Apply</h3>
+              <p class="text-xs text-slate-500 px-2">Use what you learned for smarter decisions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 border-t border-white/5 bg-background relative">
+      <div class="max-w-4xl mx-auto px-6 reveal">
+        <h2 class="text-3xl font-semibold tracking-tight mb-12 text-center text-white">FAQ</h2>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+          <div>
+            <h3 class="text-base font-medium text-white mb-2">What topics do you cover?</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Stock market, mutual funds, personal finance, insurance, tax awareness, investment planning, crypto awareness, and commodities like gold and silver.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-base font-medium text-white mb-2">Do you offer group workshops?</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">Yes—group sessions start from ₹499 per participant for groups of 10+.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-medium text-white mb-2">Is this suitable for beginners?</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">Yes. Sessions are structured to be beginner-friendly with practical examples and clear explanations.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-medium text-white mb-2">Where are sessions conducted?</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">Sessions are available in Chennai, Tamil Nadu, and can also be conducted online.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-24 border-t border-white/5 bg-slate-950 relative overflow-hidden">
+      <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+
+      <div class="max-w-xl mx-auto px-6 reveal">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-semibold tracking-tight mb-4 text-white">Contact Rupeevalcore</h2>
+          <p class="text-slate-400">Reach out for workshop scheduling and pricing details.</p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="tel:+918248589694"
+              class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-xs font-semibold text-white hover:bg-white/[0.12] transition-all hover:border-white/20"
+            >
+              <iconify-icon icon="solar:phone-linear" width="16" class="text-slate-200" stroke-width="1.5"></iconify-icon>
+              +91 8248589694
+            </a>
+            <a
+              href="mailto:contactrupeevalcore@gmail.com"
+              class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-xs font-semibold text-white hover:bg-white/[0.12] transition-all hover:border-white/20"
+            >
+              <iconify-icon icon="solar:letter-linear" width="16" class="text-slate-200" stroke-width="1.5"></iconify-icon>
+              contactrupeevalcore@gmail.com
+            </a>
+          </div>
+          <div class="mt-4 text-xs text-slate-500 inline-flex items-center gap-2">
+            <iconify-icon icon="solar:map-point-linear" width="16" class="text-slate-400" stroke-width="1.5"></iconify-icon>
+            Chennai, Tamil Nadu
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-8 relative overflow-hidden">
+          <div
+            id="successMessage"
+            class="absolute inset-0 bg-slate-950/95 backdrop-blur-sm z-20 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-500"
+          >
+            <div class="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-6">
+              <iconify-icon icon="solar:check-circle-linear" class="text-green-400" width="30" stroke-width="1.5"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-medium text-white mb-2">Message Received!</h3>
+            <p class="text-slate-400 text-sm text-center max-w-xs px-4">We’ll get back with workshop details and scheduling options shortly.</p>
+            <button
+              onclick="resetForm()"
+              class="mt-8 px-6 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white hover:bg-white/10 transition-colors"
+            >
+              Send another message
+            </button>
+          </div>
+
+          <form id="contactForm" class="space-y-6" onsubmit="sendEmail(event)">
+            <div class="space-y-1.5">
+              <label for="name" class="text-xs font-semibold text-slate-300 uppercase tracking-wide ml-1">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required=""
+                class="w-full px-4 py-3 rounded-lg text-sm text-white input-premium placeholder-slate-600 focus:placeholder-slate-500"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="email" class="text-xs font-semibold text-slate-300 uppercase tracking-wide ml-1">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required=""
+                class="w-full px-4 py-3 rounded-lg text-sm text-white input-premium placeholder-slate-600 focus:placeholder-slate-500"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="package" class="text-xs font-semibold text-slate-300 uppercase tracking-wide ml-1">Session Type</label>
+              <div class="relative">
+                <select
+                  id="package"
+                  name="package"
+                  required=""
+                  class="w-full px-4 py-3 rounded-lg text-sm text-white input-premium appearance-none bg-[#0a0f1d] cursor-pointer"
+                >
+                  <option value="" disabled="" selected="" class="bg-surface text-slate-400">Select</option>
+                  <option value="Group Sessions (10+)" class="bg-surface text-white">Group Sessions (10+)</option>
+                  <option value="One-to-One (Custom)" class="bg-surface text-white">One-to-One (Custom)</option>
+                  <option value="Corporate Teams (Custom)" class="bg-surface text-white">Corporate Teams (Custom)</option>
+                </select>
+                <iconify-icon
+                  icon="solar:alt-arrow-down-linear"
+                  class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"
+                  width="16"
+                  stroke-width="1.5"
+                ></iconify-icon>
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="details" class="text-xs font-semibold text-slate-300 uppercase tracking-wide ml-1">Details</label>
+              <textarea
+                id="details"
+                name="details"
+                rows="4"
+                required=""
+                class="w-full px-4 py-3 rounded-lg text-sm text-white input-premium placeholder-slate-600 focus:placeholder-slate-500 resize-none"
+                placeholder="Tell us your preferred workshop topic, audience size, and whether it's online or Chennai..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              id="submitBtn"
+              class="w-full py-3.5 rounded-lg bg-white text-slate-950 font-semibold text-sm hover:bg-slate-200 transition-all flex items-center justify-center gap-2 group shadow-lg shadow-white/5"
+            >
+              <span>Send Enquiry</span>
+              <iconify-icon icon="solar:arrow-right-linear" width="16" class="group-hover:translate-x-1 transition-transform" stroke-width="1.5"></iconify-icon>
+              <iconify-icon icon="solar:refresh-linear" class="animate-spin hidden" id="btnLoader" width="18" stroke-width="1.5"></iconify-icon>
+            </button>
+
+            <p id="errorMessage" class="text-xs text-red-400 text-center hidden mt-2">Failed to send message. Please try again later.</p>
+
+            <p class="text-[10px] text-slate-500 text-center leading-relaxed">
+              Submissions are saved for internal tracking. If you don’t get a response, email
+              <a
+                href="mailto:contactrupeevalcore@gmail.com"
+                class="text-slate-300 hover:text-white underline decoration-white/20 hover:decoration-white/40"
+                >contactrupeevalcore@gmail.com</a
+              >.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 bg-background">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center overflow-hidden">
+            <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="36" height="36" rx="4" stroke="white" stroke-opacity="0.2" stroke-width="2"></rect>
+              <path d="M13 28L20 8L27 28M15.5 22H24.5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <span class="text-sm font-medium text-slate-300">Rupeevalcore</span>
+        </div>
+
+        <div class="text-xs text-slate-500">© <span id="year">2026</span> Rupeevalcore. All rights reserved.</div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const revealElements = document.querySelectorAll(".reveal");
+      const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+        revealElements.forEach((reveal) => {
+          const elementTop = reveal.getBoundingClientRect().top;
+          if (elementTop < windowHeight - elementVisible) {
+            reveal.classList.add("active");
+          }
+        });
+      };
+      window.addEventListener("scroll", revealOnScroll);
+      revealOnScroll();
+
+      function prefillPackage(packageName) {
+        const select = document.getElementById("package");
+        select.value = packageName;
+      }
+
+      function toggleCurriculum(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const btn = document.querySelector('[aria-controls="' + id + '"]');
+        const isHidden = el.classList.contains("hidden");
+        el.classList.toggle("hidden");
+        if (btn) btn.setAttribute("aria-expanded", String(isHidden));
+      }
+
+      const APPS_SCRIPT_WEB_APP_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+      async function sendToGoogleSheets(payload) {
+        if (!APPS_SCRIPT_WEB_APP_URL || APPS_SCRIPT_WEB_APP_URL.includes("PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE")) {
+          return { ok: false, skipped: true };
+        }
+        const res = await fetch(APPS_SCRIPT_WEB_APP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        let data = null;
+        try {
+          data = await res.json();
+        } catch (e) {}
+        return { ok: res.ok, data };
+      }
+
+      function setLoadingState(isLoading) {
+        const submitBtn = document.getElementById("submitBtn");
+        const btnText = submitBtn.querySelector("span");
+        const btnIcon = submitBtn.querySelector("iconify-icon:not(#btnLoader)");
+        const loader = document.getElementById("btnLoader");
+
+        if (isLoading) {
+          btnText.textContent = "Processing...";
+          btnIcon.classList.add("hidden");
+          loader.classList.remove("hidden");
+          submitBtn.disabled = true;
+          submitBtn.classList.add("opacity-70", "cursor-not-allowed");
+        } else {
+          btnText.textContent = "Send Enquiry";
+          btnIcon.classList.remove("hidden");
+          loader.classList.add("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-70", "cursor-not-allowed");
+        }
+      }
+
+      function showSuccess() {
+        const successMsg = document.getElementById("successMessage");
+        successMsg.classList.remove("opacity-0", "pointer-events-none");
+      }
+
+      function showError() {
+        const errorMsg = document.getElementById("errorMessage");
+        errorMsg.classList.remove("hidden");
+      }
+
+      function hideError() {
+        const errorMsg = document.getElementById("errorMessage");
+        errorMsg.classList.add("hidden");
+      }
+
+      async function sendEmail(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const packageType = document.getElementById("package").value;
+        const details = document.getElementById("details").value;
+
+        if (!name || !email || !packageType || !details) return;
+
+        setLoadingState(true);
+        hideError();
+
+        const serviceID = "service_ih7a37o";
+        const adminTemplateID = "template_3lthys5";
+        const autoReplyTemplateID = "template_7rguicn";
+
+        const submission = {
+          timestamp: new Date().toISOString(),
+          name,
+          email,
+          package: packageType,
+          details,
+          page: window.location.href,
+          userAgent: navigator.userAgent,
+        };
+
+        try {
+          const sendAdmin = emailjs.send(serviceID, adminTemplateID, {
+            name: name,
+            email: email,
+            package: packageType,
+            details: details,
+          });
+
+          const sendAutoReply = emailjs.send(serviceID, autoReplyTemplateID, {
+            email: email,
+            name: name,
+            package: packageType,
+          });
+
+          const sheetsPromise = sendToGoogleSheets(submission);
+
+          const results = await Promise.allSettled([sendAdmin, sendAutoReply, sheetsPromise]);
+          const emailOk = results[0].status === "fulfilled" && results[1].status === "fulfilled";
+          if (!emailOk) throw new Error("Email send failed");
+
+          showSuccess();
+          document.getElementById("contactForm").reset();
+        } catch (err) {
+          console.error("Submission Error:", err);
+          showError();
+        } finally {
+          setLoadingState(false);
+        }
+      }
+
+      function resetForm() {
+        const successMsg = document.getElementById("successMessage");
+        successMsg.classList.add("opacity-0", "pointer-events-none");
+        setLoadingState(false);
+      }
+    </script>
+  </body>
+</html>
