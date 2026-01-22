@@ -416,6 +416,54 @@
     <!-- Workshops / Curriculum Accordion (fix: ensure sub-topics render and toggle) -->
     <section id="services" class="py-24 relative overflow-hidden">
       <div class="max-w-7xl mx-auto px-6">
+
+            <!-- Leadership Team Section -->
+            <section id="leadership" class="py-24 relative overflow-hidden">
+                    <div class="max-w-7xl mx-auto px-6">
+                              <div class="mb-16 text-center reveal">
+                                          <h2 class="text-3xl font-semibold tracking-tight mb-4 text-white">Leadership Team</h2>
+                                          <p class="text-slate-400">Meet the people behind Rupeevalcore's financial education mission.</p>
+                                        </div>
+
+                              <div class="grid md:grid-cols-3 gap-6 reveal">
+                                          <!-- Leader 1 -->
+                                          <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all">
+                                                        <h3 class="text-sm font-medium text-white mb-1">SHANTHI CHITRARASU</h3>
+                                                        <p class="text-xs text-indigo-400 mb-3">Founder & CEO</p>
+                                                        <button onclick="toggleDetails('leader1')" class="text-xs text-slate-400 hover:text-white transition-colors">
+                                                                        <span id="leader1-text">Show details</span> ▼
+                                                                      </button>
+                                                        <div id="leader1-details" class="hidden text-xs text-slate-400 leading-relaxed mt-3">
+                                                                        Shanthi leads Rupeevalcore's vision and overall operations. She oversees program planning, partnerships, and organizational execution, ensuring that all workshops are delivered with consistency, quality, and professional standards.
+                                                                      </div>
+                                                      </div>
+
+                                          <!-- Leader 2 -->
+                                          <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all">
+                                                        <h3 class="text-sm font-medium text-white mb-1">CHITRARASU P</h3>
+                                                        <p class="text-xs text-indigo-400 mb-3">Head of Operations & Administration</p>
+                                                        <button onclick="toggleDetails('leader2')" class="text-xs text-slate-400 hover:text-white transition-colors">
+                                                                        <span id="leader2-text">Show details</span> ▼
+                                                                      </button>
+                                                        <div id="leader2-details" class="hidden text-xs text-slate-400 leading-relaxed mt-3">
+                                                                        Chitrarasu manages day-to-day operations, logistics coordination, and administrative functions at Rupeevalcore. He ensures smooth planning and on-ground execution of workshops across colleges, offices, and institutions.
+                                                                      </div>
+                                                      </div>
+
+                                          <!-- Leader 3 -->
+                                          <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all">
+                                                        <h3 class="text-sm font-medium text-white mb-1">MANIKANDAN C</h3>
+                                                        <p class="text-xs text-indigo-400 mb-3">Lead Trainer & Program Head</p>
+                                                        <button onclick="toggleDetails('leader3')" class="text-xs text-slate-400 hover:text-white transition-colors">
+                                                                        <span id="leader3-text">Show details</span> ▼
+                                                                      </button>
+                                                        <div id="leader3-details" class="hidden text-xs text-slate-400 leading-relaxed mt-3">
+                                                                        Manikandan brings hands-on experience in financial education and investment awareness. He designs and delivers Rupeevalcore's workshops to help students, professionals, and families understand money fundamentals, risk, and long-term financial thinking through practical examples and interactive sessions.
+                                                                      </div>
+                                                      </div>
+                                        </div>
+                            </div>
+                  </section>
         <div class="mb-16 text-center reveal">
           <h2 class="text-3xl font-semibold tracking-tight mb-4 text-white">Workshops</h2>
           <p class="text-slate-400">Choose a topic and build confidence with money.</p>
@@ -1153,6 +1201,18 @@
         const successMsg = document.getElementById("successMessage");
         successMsg.classList.add("opacity-0", "pointer-events-none");
         setLoadingState(false);
+
+          function toggleDetails(leaderId) {
+                  const details = document.getElementById(leaderId + '-details');
+                  const text = document.getElementById(leaderId + '-text');
+                  if (details.classList.contains('hidden')) {
+                            details.classList.remove('hidden');
+                            text.textContent = 'Hide details';
+                          } else {
+                            details.classList.add('hidden');
+                            text.textContent = 'Show details';
+                          }
+                }
       }
     </script>
   </body>
